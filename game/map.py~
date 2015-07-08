@@ -1,0 +1,12 @@
+import random
+
+class GameMap:
+	NUM_ROWS = 20
+	NUM_COLS = 20
+
+	def random_location(self):
+		row = random.randint(1, self.NUM_ROWS)
+		col = random.randint(1, self.NUM_COLS)
+		return row, col
+
+	
