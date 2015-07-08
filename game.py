@@ -41,25 +41,27 @@ class Game:
 				break
 			elif action == "attack":
 				damage = self.player.make_attack()
-				print("You hit the monster for {} damage.".format(damage))
+				print("\nYou hit the monster for {} damage.".format(damage))
 				self.monster.hp -= damage
 				break
 			else:
-				print("Invalid action, try again.")
+				print("Invalid action, try again.\n")
 		
 	def monster_turn(self):
 		damage = self.monster.make_attack()
-		print("The monster hits you for {} damage.".format(damage))
+		print("The monster hits you for {} damage.\n".format(damage))
 		self.player.hp -= damage
 
 	def fight(self):
 		while True:
+			print('-' * 30)
 			print(self.player)
 			print(self.monster)
+			print('-' * 30)
 			self.player_turn()
 
 			if self.monster.hp <= 0:
-				print("You have slain the monster and taken the key from it's dead body.")
+				print("You have slain the monster and taken the key from it's dead body.\n")
 				self.player.key = True
 				self.monster.position = None
 				break
@@ -67,7 +69,7 @@ class Game:
 			self.monster_turn()
 			
 			if self.player.hp <= 0:
-				print("You have been killed by the monster. Game over!")
+				print("You have been killed by the monster. Game over!\n")
 				sys.exit()
 
 	def clear(self):
@@ -78,11 +80,20 @@ class Game:
 		
 		self.setup()
 	
+		message = None
+
 		while True:
+			self.clear()
+
+			print("Hero: " + self.player.name.title() + " / Weapon: " + self.player.weapon.title()) 
 			self.player.draw_map(hero = self.player.position, 
 								monster=self.monster.position, 
 								door = self.door.position, 
 								visited=self.player.visited_list)
+
+			if message:
+				print(message)
+				message = None
 
 			if self.player.key == True:
 				print("Inventory: Key")
@@ -93,19 +104,18 @@ class Game:
 				print("You moved {}.\n\n".format(move))
 				self.player.change_position(move)
 			else:
-				print("That is not a valid move.")
+				message="That is not a valid move."
 			if self.player.position == self.door.position:
 				if self.player.key:
 					print("You found the exit. You win!")
 					break
 				else:
-					print("You found the exit, but the door is locked.")
+					message = "You found the exit, but the door is locked."
 			elif self.player.position == self.monster.position:
-				print("You have found the monster!")
+				print("You have found the monster!\n")
 				self.fight()
 
-			self.clear()
-		
+			
 		print("Game over. You made {} moves.\n\n".format(len(self.player.visited_list)-1))
 
 Game()

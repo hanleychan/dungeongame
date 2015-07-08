@@ -1,6 +1,0 @@
-class Door:
-	def __init__(self, **kwargs):
-		self.position = kwargs.get('position', "")
-
-		for key, value in kwargs.items():
-			setattr(self, key, value)
