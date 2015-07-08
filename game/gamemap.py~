@@ -16,6 +16,7 @@ class GameMap:
 		monster = kwargs.get("monster", None)
 		door = kwargs.get("door", None)
 		visited = kwargs.get("visited", None)
+
 		print("\nMAP: (H = HERO, M = MONSTER, D = DOOR, X = UNVISITED LOCATION, O = VISITED LOCATION)")
 		print("=======================================================================================")
 		for x in range(0, cls.NUM_ROWS):
@@ -27,6 +28,8 @@ class GameMap:
 					temp += "M "
 				elif door == (x,y):
 					temp += "D "
+				elif (x,y) in visited:
+					temp += "O "
 				else:
 					temp += "X "
 			print(temp)

@@ -13,9 +13,15 @@ class GameMap:
 	@classmethod
 	def draw_map(cls, **kwargs):
 		hero = kwargs.get("hero", None)
-		monster = kwargs.get("monster", None)
-		door = kwargs.get("door", None)
 		visited = kwargs.get("visited", None)
+		
+		monster = kwargs.get("monster", None)
+		if monster not in visited:
+			monster = None
+		
+		door = kwargs.get("door", None)
+		if door not in visited:
+			door = None
 
 		print("\nMAP: (H = HERO, M = MONSTER, D = DOOR, X = UNVISITED LOCATION, O = VISITED LOCATION)")
 		print("=======================================================================================")

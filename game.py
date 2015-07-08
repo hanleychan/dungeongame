@@ -56,14 +56,12 @@ class Game:
 		while True:
 			print(self.player)
 			print(self.monster)
-			
 			self.player_turn()
 
 			if self.monster.hp <= 0:
-				print("You have slain the monster and taken the key from it's dead body")
+				print("You have slain the monster and taken the key from it's dead body.")
 				self.player.key = True
 				self.monster.position = None
-
 				break
 
 			self.monster_turn()
@@ -101,7 +99,7 @@ class Game:
 					print("You found the exit. You win!")
 					break
 				else:
-					print("You found the exit, but you do not have the key.")
+					print("You found the exit, but the door is locked.")
 			elif self.player.position == self.monster.position:
 				print("You have found the monster!")
 				self.fight()
