@@ -8,6 +8,7 @@ from game.door import Door
 
 class Game:
 	def setup(self):
+		""" Generates a hero, monster and door at random locations. """
 		player_start = GameMap.random_location()
 	
 		# Generate monster location. Make sure it is not the same as player location
@@ -33,6 +34,7 @@ class Game:
 		self.player.visit_location(player_start)
 
 	def player_turn(self):
+		""" Asks the user to take an action to either attack or recover """
 		while True:
 			action = input("Attack or Heal: ").lower().strip()
 			if action == "heal":
@@ -48,11 +50,13 @@ class Game:
 				print("Invalid action, try again.\n")
 		
 	def monster_turn(self):
+		""" The monster attemps to attack the player """
 		damage = self.monster.make_attack()
 		print("The monster hits you for {} damage.\n".format(damage))
 		self.player.hp -= damage
 
 	def fight(self):
+		""" Handles the fight between the player and the monster. """
 		while True:
 			print('-' * 30)
 			print(self.player)
@@ -73,6 +77,7 @@ class Game:
 				sys.exit()
 
 	def clear(self):
+		""" Clears the screen """
 		os.system('cls' if os.name == 'nt' else 'clear')
 
 	def __init__(self):

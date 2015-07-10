@@ -22,9 +22,11 @@ class Hero(Move, Combat):
 
 
 	def visit_location(self, position):
+		""" Updates the history of where the hero just visited """
 		self.visited_list.append(position)
 
 	def choose_weapon(self):
+		""" Lets the user choose a weapon """
 		weapon_choice = input("Weapon: [S]word, [A]xe, [B]ow: ").lower()
 
 		if weapon_choice == 's' or weapon_choice == 'sword':
@@ -37,6 +39,7 @@ class Hero(Move, Combat):
 			return self.choose_weapon()
 
 	def heal(self):
+		""" Recovers a random amount of health """
 		heal_amount = random.randint(1,2)
 		new_hp = self.hp + heal_amount
 
@@ -46,6 +49,7 @@ class Hero(Move, Combat):
 			self.hp = new_hp
 
 	def change_position(self, move):
+		""" Moves the hero to a new location """
 		if move == "UP":
 			new_position = (self.position[0]-1,self.position[1])
 		elif move == "DOWN":

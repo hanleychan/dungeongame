@@ -6,12 +6,14 @@ class GameMap:
 
 	@classmethod
 	def random_location(cls):
+		""" Returns a random location on the map """
 		row = random.randint(0, cls.NUM_ROWS-1)
 		col = random.randint(0, cls.NUM_COLS-1)
 		return row, col
 
 	@classmethod
 	def draw_map(cls, **kwargs):
+		""" Prints out the game map """
 		hero = kwargs.get("hero", None)
 		visited = kwargs.get("visited", None)
 		

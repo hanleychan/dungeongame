@@ -2,6 +2,7 @@ from .gamemap import GameMap
 
 class Move(GameMap):
 	def get_valid_moves(self, location):
+		""" Returns a list of valid moves based from a specified location """
 		valid_moves_list = []
 		
 		if location == (0,0):  # top left corner
@@ -26,12 +27,14 @@ class Move(GameMap):
 		return(valid_moves_list)
 
 	def is_valid_move(self, move, location):
+		""" Returns whether a specified move is valid or not from a specified location """
 		if move in self.get_valid_moves(location):
 			return True
 		else:
 			return False
 
 	def is_valid_location(self, location):
+		""" Returns whether a specified location is a valid location in the game map """
 		gameGrid = []
 
 		for x in range(0, self.NUM_ROWS):

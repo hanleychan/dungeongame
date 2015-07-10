@@ -13,6 +13,5 @@ class Monster(Combat):
 		for key, value in kwargs.items():
 			setattr(self, key, value)
 
-
 	def __str__(self):
 		return "{} Monster: HP {}".format(self.color.title(), self.hp)
